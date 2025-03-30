@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-native'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Colors from '@/components/Colors';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -9,7 +9,7 @@ import { useRouter } from 'expo-router';
 
 const EnterPassword = () => {
    const router = useRouter()
-   const [password, setPassword] = useState<Array<number>>([])
+   const [password, setPassword] = useState<number[]>([])
    // const [isLoading, setIsLoading] = useState(false)
    const [isBiometricSupported, handleBiometricAuth] = useBiometrics()
 
@@ -75,19 +75,23 @@ const EnterPassword = () => {
       { id: 0, title: <Text style={style.digit}>0</Text> },
       { id: 'backSpace', title: <Ionicons name="backspace-outline" size={30} color="#fff" /> },
    ]
+   useEffect(() => {
+      if (password.length === 6) {
+         router.push('/Verification')
+         return () => {
+            setPassword([])
+         }
+      }
+
+   }, [password])
    const onButtonPress = (id: number | string) => {
       if (id === 'backSpace') {
          if (password.length > 0) {
             setPassword(prev => prev.slice(0, -1))
          }
-      } 
-      else if (typeof id === 'number' && password.length == 6){
-         console.log(password, password.length)
-         router.push('/Verification')
       }
       else if (typeof id === 'number' && password.length < 6) {
-         console.log(password, password.length)
-         setPassword((prev) => [...prev, id]);
+         setPassword([id, ...password]);
       }
       else if (id === 'fingerID') {
          if (isBiometricSupported) {
@@ -116,7 +120,6 @@ const EnterPassword = () => {
          <View style={{ marginBlock: 20, }}>
             <FlatList data={buttons}
                numColumns={3}
-               nestedScrollEnabled={true}
                nativeID='buttons'
                keyExtractor={item => item.id.toString()}
                contentContainerStyle={{ gap: 20, marginTop: 20 }}

@@ -10,6 +10,7 @@ import countries from '@/components/countries'
 import * as ImagePicker from "expo-image-picker";
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useRouter } from 'expo-router'
+import { Image } from 'react-native'
 // import { ImagePickerResponse, launchImageLibrary } from "react-native-image-picker";
 
 
@@ -24,7 +25,7 @@ const Verification = () => {
 
    const handleNext = () => {
       console.log('Next Button pressed from Verification Page')
-      // router.push('')
+      router.push('/Birthday')
    }
 
 
@@ -220,7 +221,7 @@ const Verification = () => {
             </View>
          </View>
 
-         {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 10 }}/>} */}
+         {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 10 }}/>}
 
          <View style={{ marginTop: 'auto' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 3, paddingBottom: 40 }}>

@@ -3,8 +3,10 @@ import React from 'react'
 import Header from '@/components/Header'
 import Colors from '@/components/Colors'
 import DatePicker from '@/components/DatePicker'
+import { useRouter } from 'expo-router'
 
 const Birthday = () => {
+   const router = useRouter()
    const style = StyleSheet.create({
       View: {
          padding: 16,
@@ -16,6 +18,7 @@ const Birthday = () => {
    const handleNext = () => {
       // Handle the next button press
       console.log('Next button pressed from birthday page');
+      router.push('/VerifyEmail')
    }
    return (
       <View style={style.View}>
