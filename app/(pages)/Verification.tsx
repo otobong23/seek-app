@@ -221,7 +221,7 @@ const Verification = () => {
             </View>
          </View>
 
-         {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 10 }}/>}
+         {/* {image && <Image source={{ uri: image }} style={{ width: 200, height: 200, marginTop: 10 }}/>} */}
 
          <View style={{ marginTop: 'auto' }}>
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 3, paddingBottom: 40 }}>
