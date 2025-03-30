@@ -79,8 +79,8 @@ const Gender = () => {
                   </View>
                ))}
             </View>
-
          </View>
+
 
          <View style={{ marginTop: 'auto' }}>
             <View nativeID='progress' style={{ flexDirection: 'row', alignItems: 'center', gap: 15, paddingBottom: 40, flex: 1, }}>

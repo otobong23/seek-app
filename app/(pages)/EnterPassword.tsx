@@ -4,11 +4,13 @@ import Colors from '@/components/Colors';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import useBiometrics from '@/hooks/useBiometrics';
+import { useRouter } from 'expo-router';
 
 
 const EnterPassword = () => {
+   const router = useRouter()
    const [password, setPassword] = useState<Array<number>>([])
-   const [isLoading, setIsLoading] = useState(false)
+   // const [isLoading, setIsLoading] = useState(false)
    const [isBiometricSupported, handleBiometricAuth] = useBiometrics()
 
    const style = StyleSheet.create({
@@ -78,7 +80,13 @@ const EnterPassword = () => {
          if (password.length > 0) {
             setPassword(prev => prev.slice(0, -1))
          }
-      } else if (typeof id === 'number' && password.length < 6) {
+      } 
+      else if (typeof id === 'number' && password.length == 6){
+         console.log(password, password.length)
+         router.push('/Verification')
+      }
+      else if (typeof id === 'number' && password.length < 6) {
+         console.log(password, password.length)
          setPassword((prev) => [...prev, id]);
       }
       else if (id === 'fingerID') {
@@ -108,6 +116,7 @@ const EnterPassword = () => {
          <View style={{ marginBlock: 20, }}>
             <FlatList data={buttons}
                numColumns={3}
+               nestedScrollEnabled={true}
                nativeID='buttons'
                keyExtractor={item => item.id.toString()}
                contentContainerStyle={{ gap: 20, marginTop: 20 }}

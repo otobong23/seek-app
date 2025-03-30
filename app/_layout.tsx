@@ -3,6 +3,7 @@ import '../global.css';
 import { useFonts } from "expo-font";
 import Colors from "@/components/Colors";
 import { ActivityIndicator } from "react-native";
+import '@/global.css'
 
 const poppins = {
   "poppins-light": require('../assets/fonts/Poppins/Poppins-Light.ttf'),

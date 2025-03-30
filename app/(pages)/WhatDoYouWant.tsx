@@ -1,15 +1,17 @@
 
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, FlatList, ActivityIndicator, Alert } from 'react-native'
 import React, { useState } from 'react'
 import Header from '@/components/Header'
 import Colors from '@/components/Colors'
+import { useRouter } from 'expo-router'
 
 const WhatDoYouWant = () => {
+   const router = useRouter()
    const [selectedOption, setSelectedOption] = useState<Array<'men' | 'women' | 'non_binary'>>([]);
 
    const handleNext = () => {
-      console.log('Next Button pressed from WhatDoYouWant Page')
-      // router.push('')
+      Alert.alert(selectedOption.toString())
+      router.push('/WhatDoYouNeed')
    }
    const options = [
       { id: 'men', label: 'Men', text: 'Meet amazing men with diverse cultures, great personalities and more' },
